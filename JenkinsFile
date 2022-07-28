@@ -10,12 +10,12 @@ pipeline {
     stage('sonar quality check') {
       steps {
         script {
-          withSonarQubeEnv(credentialsId: 'sonar-token') {
-            //sh "mvn org.codehaus.mojo:sonar-maven-plugin:2.6:sonar"
-            sh "mvn sonar:sonar \
-                -Dsonar.projectKey=my-test-project \
-                -Dsonar.host.url=http://3.87.98.247:9000 \
-                -Dsonar.login=0348544a9e997b6d4f56a21190c1cfc9d1c77c55"
+          withSonarQubeEnv('sonarqube') {
+            sh "mvn org.codehaus.mojo:sonar-maven-plugin:2.6:sonar"
+            //sh "mvn sonar:sonar \
+               // -Dsonar.projectKey=my-test-project \
+                // -Dsonar.host.url=http://3.87.98.247:9000 \
+                // -Dsonar.login=0348544a9e997b6d4f56a21190c1cfc9d1c77c55"
           }
         }
 

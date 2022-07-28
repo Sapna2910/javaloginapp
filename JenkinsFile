@@ -19,10 +19,10 @@ pipeline {
             // -Dsonar.login=0348544a9e997b6d4f56a21190c1cfc9d1c77c55"
           }
 
-          timeout(time: 5, unit: 'SECONDS') {
+          timeout(time: 5, unit: 'HOURS') {
             def res = waitForQualityGate()
             if (res.status != 'OK') {
-              error "pipeline aborted due to quality gate error: ${res.status}"
+              error "pipeline aborted due to quality gate error: $(res.status)"
             }
 
           }

@@ -11,7 +11,8 @@ pipeline {
       steps {
         script {
           withSonarQubeEnv('sonarqube') {
-            sh "mvn org.codehaus.mojo:sonar-maven-plugin:2.6:sonar"
+            //sh "mvn org.codehaus.mojo:sonar-maven-plugin:2.6:sonar"
+            sh "mvn sonar:sonar"
             //sh "mvn sonar:sonar \
                // -Dsonar.projectKey=my-test-project \
                 // -Dsonar.host.url=http://3.87.98.247:9000 \

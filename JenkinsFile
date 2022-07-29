@@ -1,7 +1,7 @@
 pipeline {
   agent any
-  environment{
-      VERSION = "${env.BUILD_ID}"
+  environment {
+    VERSION = "${env.BUILD_ID}"
   }
 
   stages {
@@ -35,24 +35,43 @@ pipeline {
       }
 
     }
-    
-    stage('Docker image build and Push')
-    {
-        steps
-        {
-            script
-            {
-                withCredentials([string(credentialsId: 'nexus_pass', variable: 'nexus_password')]) {
-                    sh '''
-                    docker build -t 3.89.27.252:8083/my-test-image:${VERSION} .
-                    docker login -u admin -p ${nexus_password} http://3.89.27.252:8083/
-                    docker push 3.89.27.252:8083/my-test-image:${VERSION}
-                    docker rmi 3.89.27.252:8083/my-test-image:${VERSION}
-                    '''
-                }
+
+    stage('Docker image build and Push') {
+      steps {
+        script {
+          withCredentials([string(credentialsId: 'nexus_pass', variable: 'nexus-password')]) {
+            sh ''
+            '
+            docker build - t 3.89 .27 .252: 8083 / my - test - image: $ {
+              VERSION
+            }.
+            docker login - u admin - p $ {
+              nexus - password
             }
-           
+            http: //3.89.27.252:8083/
+              docker push 3.89 .27 .252: 8083 / my - test - image: $ {
+                VERSION
+              }
+            docker rmi 3.89 .27 .252: 8083 / my - test - image: $ {
+              VERSION
+            }
+            ''
+            '
+          }
         }
+
+      }
+    }
+
+    stage('identify misconfigs in helm charts using datree plugin') {
+      steps {
+        script {
+          dir('kubernetes/') {
+            sh 'helm datree test myapp/'
+          }
+        }
+      }
+
     }
 
   }

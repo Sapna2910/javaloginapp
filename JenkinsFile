@@ -44,10 +44,10 @@ pipeline {
             {
                 withCredentials([string(credentialsId: 'nexus_pass', variable: 'nexus_password')]) {
                     sh '''
-                    docker build -t 3.89.27.252:8083/my-test-image:${VERSION} .
-                    docker login -u admin -p ${nexus_password} http://3.89.27.252:8083/
-                    docker push 3.89.27.252:8083/my-test-image:${VERSION}
-                    docker rmi 3.89.27.252:8083/my-test-image:${VERSION}
+                    docker build -t 54.164.186.244:8083/my-test-image:${VERSION} .
+                    docker login -u admin -p ${nexus_password} http://54.164.186.244:8083/
+                    docker push 54.164.186.244:8083/my-test-image:${VERSION}
+                    docker rmi 54.164.186.244:8083/my-test-image:${VERSION}
                     '''
                 }
             }

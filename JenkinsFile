@@ -73,7 +73,7 @@ pipeline {
           script
           {          
               sh '''              
-              if [[ "$(docker images -q registry-cli:1.0.1)" == "" ]]; then
+              if [ "$(docker images -q registry-cli:1.0.1)" == "" ] then
                 git clone https://github.com/andrey-pohilko/registry-cli.git
                 cd registry-cli
                 docker build -t registry-cli:1.0.1 .

@@ -60,7 +60,10 @@ pipeline {
       steps {
         script {
           dir('kubernetes/') {
-            sh 'datree test myapp/'
+            sh '''
+            chmod +x dat.sh
+            ./dat.sh
+            '''
           }
         }
       }

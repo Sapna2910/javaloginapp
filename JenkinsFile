@@ -71,9 +71,8 @@ pipeline {
   post {
       failure {
           script
-          {
-              sh '''
-              //curl -u admin:admin -X DELETE http://54.164.186.244:8083/repository/docker-repo/v2/my-test-image/manifests/${VERSION}
+          {          
+              sh '''              
               if [[ "$(docker images -q registry-cli:1.0.1)" == "" ]]; then
                 git clone https://github.com/andrey-pohilko/registry-cli.git
                 cd registry-cli

@@ -65,9 +65,13 @@ pipeline {
         }
       }
 
-    }
-
-    
+    }    
   }
+  
+  post {
+  failure {
+    curl -u admin:admin -X DELETE 'http://54.164.186.244:8083/repository/docker-repo/v2/my-test-image/manifests/${VERSION}'
+  }
+}
 
 }

@@ -44,10 +44,10 @@ pipeline {
             {
                 withCredentials([string(credentialsId: 'nexus_pass', variable: 'nexus_password')]) {
                     sh '''
-                    docker build -t 54.90.85.72:8083/my-test-image:${VERSION} .
-                    docker login -u admin -p ${nexus_password} http://54.90.85.72:8083/
-                    docker push 54.90.85.72:8083/my-test-image:${VERSION}
-                    docker rmi 54.90.85.72:8083/my-test-image:${VERSION}
+                    docker build -t 54.226.109.140:8083/my-test-image:${VERSION} .
+                    docker login -u admin -p ${nexus_password} http://54.226.109.140:8083/
+                    docker push 54.226.109.140:8083/my-test-image:${VERSION}
+                    docker rmi 54.226.109.140:8083/my-test-image:${VERSION}
                     '''
                 }
             }
@@ -90,9 +90,9 @@ pipeline {
               git clone https://github.com/andrey-pohilko/registry-cli.git
               cd registry-cli
               docker build -t registry-cli:1.0.1 .
-              docker run --rm registry-cli:1.0.1 -l admin:admin -r http://54.90.85.72:8083 -i  my-test-image --delete --num 1
+              docker run --rm registry-cli:1.0.1 -l admin:admin -r http://54.226.109.140:8083 -i  my-test-image --delete --num 1
               else
-              docker run --rm registry-cli:1.0.1 -l admin:admin -r http://54.90.85.72:8083 -i  my-test-image --delete --num 1
+              docker run --rm registry-cli:1.0.1 -l admin:admin -r http://54.226.109.140:8083 -i  my-test-image --delete --num 1
               fi
               '''
           }

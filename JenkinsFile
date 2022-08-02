@@ -86,7 +86,7 @@ pipeline {
           {          
               sh '''              
                 if [ -z "$( docker images -q registry-cli:1.0.1 )" ]; then
-                 repo = "registry-cli.git"
+                 repo="registry-cli.git"
                  if [ !d "$repo"]; then
                   git clone https://github.com/andrey-pohilko/registry-cli.git
                   cd registry-cli
